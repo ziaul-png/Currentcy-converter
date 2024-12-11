@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter: INR to AED</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        .converter {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .converter input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            font-size: 1rem;
+        }
+        .converter button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .converter button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Currency Converter: INR ↔ AED</h1>
+    <div class="converter">
+        <label for="inr">INR (₹):</label>
+        <input type="number" id="inr" placeholder="Enter amount in INR">
+        
+        <label for="aed">AED (د.إ):</label>
+        <input type="number" id="aed" placeholder="Enter amount in AED">
+
+        <button onclick="convertCurrency()">Convert</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function convertCurrency() {
+            const inrInput = document.getElementById("inr").value;
+            const aedInput = document.getElementById("aed").value;
+            const resultDiv = document.getElementById("result");
+
+            // Updated Exchange rates
+            const inrToAedRate = 1 / 23.10; // 1 INR = ~0.04329 AED
+            const aedToInrRate = 23.10;    // 1 AED = 23.10 INR
+
+            if (inrInput && !aedInput) {
+                const convertedToAed = (inrInput * inrToAedRate).toFixed(2);
+                resultDiv.textContent = `${inrInput} INR = ${convertedToAed} AED`;
+            } else if (aedInput && !inrInput) {
+                const convertedToInr = (aedInput * aedToInrRate).toFixed(2);
+                resultDiv.textContent = `${aedInput} AED = ${convertedToInr} INR`;
+            } else {
+                resultDiv.textContent = "Please enter a value in one of the fields.";
+            }
+        }
+    </script>
+</body>
+</html>
